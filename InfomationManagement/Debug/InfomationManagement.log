@@ -1,4 +1,4 @@
-﻿生成启动时间为 7/1/2014 1:46:40 PM。
+﻿生成启动时间为 7/1/2014 5:28:47 PM。
      1>项目“G:\学习\C++学习\InfomationManagement\InfomationManagement\InfomationManagement.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\InfomationManagement.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
@@ -7,6 +7,7 @@
          Main.cpp
        Link:
          g:\ProgrammingSoftware\vs2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\学习\C++学习\InfomationManagement\Debug\InfomationManagement.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\InfomationManagement.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\学习\C++学习\InfomationManagement\Debug\InfomationManagement.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\学习\C++学习\InfomationManagement\Debug\InfomationManagement.lib" /MACHINE:X86 Debug\Main.obj
+         Debug\User.obj
          LINK : 没有找到 G:\学习\C++学习\InfomationManagement\Debug\InfomationManagement.exe 或上一个增量链接没有生成它；正在执行完全链接
          InfomationManagement.vcxproj -> G:\学习\C++学习\InfomationManagement\Debug\InfomationManagement.exe
        Manifest:
@@ -18,4 +19,4 @@
 
 生成成功。
 
-已用时间 00:00:01.04
+已用时间 00:00:01.06

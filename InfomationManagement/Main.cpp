@@ -1,4 +1,5 @@
 # include <Windows.h>
+# include "User.h"
 
 //获取系统参数
 const int sWidth = GetSystemMetrics(SM_CXSCREEN);
@@ -6,9 +7,10 @@ const int sHeight = GetSystemMetrics(SM_CYSCREEN);
 
 
 //定义全局变量
-HINSTANCE hInst;//实例句柄
 LPCSTR lpClassName = "MainWindow";//窗口类名
+HINSTANCE hInst;//实例句柄
 HWND hWnd;//主窗口句柄
+CUser user;//用户登录类
 
 const int wWidth = 600;//窗口大小
 const int wHeight = 400;
@@ -32,10 +34,14 @@ int WINAPI WinMain(
 
     MyRegistClass(hInstance);//注册窗口类
 
-    if (InitializeWindow(hInstance, SW_SHOW) == NULL)//初始化窗口
+    hWnd = InitializeWindow(hInstance, SW_SHOW);
+    if (hWnd == NULL)//初始化窗口
     {
         return FALSE;
     }
+    
+    user.Initialize(hInst, hWnd);
+    user.Show(SW_SHOW);
 
     while (GetMessage(&msg, NULL, 0, 0))
     {
@@ -88,13 +94,29 @@ LRESULT CALLBACK WinMainProc(
     LPARAM lParam
     )
 {
+    int nEvent;
+    int nID;
+
     switch(uMsg)
     {
+    case WM_CREATE :
+        DefWindowProc(hWnd, uMsg, wParam, lParam);
+        break;
     case WM_PAINT :
         DefWindowProc(hWnd, uMsg, wParam, lParam);
         break;
-    case WM_COMMAND :
-        DefWindowProc(hWnd, uMsg, wParam, lParam);
+    case WM_COMMAND ://按键事件
+        nEvent = HIWORD(wParam);
+        nID = LOWORD(wParam);
+        switch (nID)
+        {
+        case BT_LOGON :
+            //MessageBox(hWnd, "Win !!", "提示", MB_OK);
+            user.Show(SW_HIDE);
+            break;
+        default :
+            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+        }
         break;
     case WM_CLOSE :
         if (IDOK == MessageBox(hWnd, "是否关闭程序？", "提示", MB_OKCANCEL))
