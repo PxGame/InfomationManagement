@@ -12,8 +12,10 @@ HINSTANCE hInst;//实例句柄
 HWND hWnd;//主窗口句柄
 CUser user;//用户登录类
 
-const int wWidth = 600;//窗口大小
-const int wHeight = 400;
+const int wWidth = 800;//窗口大小
+const int wHeight = 600;
+const int wX = (sWidth - wWidth) / 2;
+const int wY = (sHeight - wHeight) / 2;
 
 //声明
 ATOM MyRegistClass(HINSTANCE hInstance);
@@ -73,7 +75,7 @@ ATOM MyRegistClass(HINSTANCE hInstance)
 HWND InitializeWindow(HINSTANCE hInstance, int nCmdShow)
 {
     HWND hWnd = CreateWindow(lpClassName, "Infomation Management", WS_CAPTION | WS_SYSMENU, 
-        (sWidth - wWidth) / 2, (sHeight - wHeight) / 2, wWidth, wHeight, 
+        wX, wY, wWidth, wHeight, 
         NULL, NULL, hInstance, NULL);
     
     if (hWnd == NULL)
@@ -110,9 +112,11 @@ LRESULT CALLBACK WinMainProc(
         nID = LOWORD(wParam);
         switch (nID)
         {
-        case BT_LOGON :
-            //MessageBox(hWnd, "Win !!", "提示", MB_OK);
-            user.Show(SW_HIDE);
+        case BT_LOGON ://登录按钮
+            if (user.TestPassword() == true)
+            {
+                user.Show(SW_HIDE);
+            }
             break;
         default :
             return DefWindowProc(hWnd, uMsg, wParam, lParam);
